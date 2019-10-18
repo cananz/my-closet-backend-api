@@ -8,7 +8,7 @@ class ItemSerializer
       only: [:id, :image, :brand, :color],
       include: {
         user: {
-          only: [:username, :id]
+          only: [:id, :username, :first_name, :last_name]
         },
         category: {
           only: [:name]

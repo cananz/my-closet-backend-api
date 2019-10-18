@@ -13,7 +13,7 @@ jacket = Category.find_or_create_by(name: 'jacket')
 other = Category.find_or_create_by(name: 'other')
 
 
-cher = User.find_or_create_by(username: 'clueless', firstName: 'cher', lastName: 'horowitz')
+cher = User.find_or_create_by(username: 'clueless', first_name: 'cher', last_name: 'horowitz')
 
 jean_img = 'https://fastly.hautelookcdn.com/products/50C-7002NOK/large/9514585.jpg?height=350&width=228'
 
