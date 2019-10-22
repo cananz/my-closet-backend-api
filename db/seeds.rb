@@ -27,6 +27,27 @@ jeans = Item.find_or_create_by(brand: 'madewell', color: 'blue', image: jean_img
 
 tshirt_img = 'https://images-na.ssl-images-amazon.com/images/I/71lTrSOgiwL._UY606_.jpg'
 tshirt = Item.find_or_create_by(color: 'multi', brand: 'gap', image: tshirt_img, category: top, user: cher)
+shirt2 = Item.find_or_create_by(category: Category.find(1), user: User.find(1), color: 'blue', brand: 'gap', image: 'https://www.gap.com/webcontent/0017/143/843/cn17143843.jpg')
+skirt = Item.find_or_create_by(category: Category.find(2), user: User.find(1), color: 'blue', brand: 'madewell', image: 'https://i.s-madewell.com/is/image/madewell/AF033_GR5628_d1?wid=1400&hei=1779&fmt=jpeg&fit=crop&qlt=75,1&resMode=bisharp&op_usm=0.5,1,5,0')
+
+
+
+dress_img = 'https://i.s-madewell.com/is/image/madewell/AB304_WQ7007_ld?wid=1400&hei=1779&fmt=jpeg&fit=crop&qlt=75,1&resMode=bisharp&op_usm=0.5,1,5,0'
+
+dress = Item.find_or_create_by(category: Category.find(5), brand: 'madewell', user: User.find(1), color: 'red', image: dress_img)
+
+joggers = Item.find_or_create_by(category: Category.find(2), brand: 'zella', user: User.find(1), color: 'grey', image: './app/images/zella-jogger.jpeg')
+
+
+
+
+
+
+
+
+
+
+
 
 # NOT YET SEEDED
 
