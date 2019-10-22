@@ -9,6 +9,13 @@ class UsersController < ApplicationController
     render json: UserSerializer.new(user).to_serialized_json
   end
 
+  def create_outfit
+    user = User.find(params[:id])
+
+
+  end
+
+
   def create
     user = User.create_by(user_params)
     render json: UserSerializer.new(user).to_serialized_json

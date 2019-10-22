@@ -1,14 +1,21 @@
 Rails.application.routes.draw do
   # resources :outfit_items
-  resources :outfits
-  resources :items
+
+  resources :users do
+    resources :outfits, only: [:index, :create, :destroy]
+  end
+
+
+  # resources :outfits
+  # resources :items
   resources :categories
   # get 'users/index'
   # get 'users/show'
   # get 'users/create'
   # get 'users/update'
   # get 'users/destroy'
-  resources :users
+  # post '/users/:id/outfits', to: 'users#create_outfit'
+
   # get 'users/items'
 
 
