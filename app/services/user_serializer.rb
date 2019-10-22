@@ -11,11 +11,20 @@ class UserSerializer
           include: {
             category: {only: [:name]}
           }
+        },
+        outfits: {
+          only: [:id],
+          include: {
+            items: {
+              only: [:id, :image, :brand],
+              include: {category: {only: [:name]}}
+            }
+          }
         }
       },
       except: [:updated_at, :created_at]
     }
-  
+
 
     @user.to_json(user_options)
   end
