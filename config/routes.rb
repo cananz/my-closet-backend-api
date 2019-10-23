@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # resources :outfit_items
 
+  post '/login', to: 'users#login'
+  # get '/:username', to:
+
   resources :users do
     resources :outfits, only: [:index, :create, :destroy]
   end

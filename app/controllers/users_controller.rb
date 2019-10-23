@@ -4,22 +4,29 @@ class UsersController < ApplicationController
     render json: UserSerializer.new(users).to_serialized_json
   end
 
+  def login
+    user = User.find_by(username: params[:username])
+
+    if user
+      render json: UserSerializer.new(user).to_serialized_json
+    else
+      render json: {error: 'could not find username'}.to_json
+    end
+  end
+
   def show
     user = User.find(params[:id])
     render json: UserSerializer.new(user).to_serialized_json
   end
 
-  def create_outfit
-    user = User.find(params[:id])
-
-
-  end
-
-
-  def create
-    user = User.create_by(user_params)
-    render json: UserSerializer.new(user).to_serialized_json
-  end
+  # def create
+  #   user = User.create(user_params)
+  #   if user.valid?
+  #     render json: user: UserSerializer.new(user).to_serialized_json
+  #   else
+  #     render json: { error: 'failed to create user' }, status: :not_acceptable
+  #   end
+  # end
 
   def update
     user = User.find(params[:id])
@@ -34,6 +41,6 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.permit(:id, :username, :first_name, :last_name)
+      params.permit(:username, :first_name, :last_name)
     end
 end
