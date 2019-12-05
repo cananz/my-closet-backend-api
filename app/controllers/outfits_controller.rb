@@ -15,17 +15,15 @@ class OutfitsController < ApplicationController
   end
 
   def create
-    # byebug
     user = User.find(params[:user_id])
-    outfit = Outfit.create
-    add_items = params[:items]
-    # byebug
-    add_items.each {|item_id|
-      OutfitItem.create(item_id: item_id, outfit_id: outfit.id)
-    }
-    # outfit.items = add_items
-    # byebug
+    outfits = user.outfits
+
+    outfit = Outfit.create(item_ids: params[:items])
+
+    # outfit.item_ids = params[:items]
+
     render json: outfit.to_json
+    # render json: outfits.to_json
   end
 
   def update
