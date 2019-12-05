@@ -37,10 +37,27 @@ class OutfitsController < ApplicationController
   end
 
   def update
+
   end
 
   def destroy
+    # byebug
+    outfit = Outfit.find(params[:id])
+    user = User.find(params[:user_id])
+    outfit.destroy
+    outfits = user.outfits
 
+    outfit_options = {
+      include: {
+        items: {
+          only: [:id, :image, :brand],
+          include: {category: {only: [:name]}}
+        }
+      },
+      except: [:updated_at, :created_at]
+    }
+
+    render json: outfits.to_json(outfit_options)
   end
 
   private
