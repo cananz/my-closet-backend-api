@@ -22,7 +22,17 @@ class OutfitsController < ApplicationController
 
     # outfit.item_ids = params[:items]
 
-    render json: outfit.to_json
+    outfit_options = {
+      include: {
+        items: {
+          only: [:id, :image, :brand],
+          include: {category: {only: [:name]}}
+        }
+      },
+      except: [:updated_at, :created_at]
+    }
+
+    render json: outfit.to_json(outfit_options)
     # render json: outfits.to_json
   end
 
