@@ -4,14 +4,16 @@ Rails.application.routes.draw do
   post '/login', to: 'users#login'
   # get '/:username', to:
 
-  resources :users do
-    resources :outfits, only: [:index, :create, :destroy]
+  resources :users, only: [:index, :show] do
+    # resources :outfits, only: [:index, :show, :create, :destroy]
+    resources :outfits, only: [:index, :show]
   end
 
-
-  # resources :outfits
-  # resources :items
-  resources :categories
+  resources :outfits
+  # resources :outfits, only: [:create, :destroy]
+  # resources :outfits, only: [:index, :show, :create, :destroy]
+  resources :items, only: [:index, :show]
+  resources :categories, only: [:index, :show]
   # get 'users/index'
   # get 'users/show'
   # get 'users/create'
