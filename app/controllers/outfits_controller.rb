@@ -1,63 +1,54 @@
 class OutfitsController < ApplicationController
   def index
-    user = User.find(params[:user_id])
-    outfits = user.outfits
-    outfit_options = {
-      include: {
-        items: {
-          only: [:id, :image, :brand],
-          include: {category: {only: [:name]}}
-        }
-      },
-      except: [:updated_at, :created_at]
-    }
-    render json: outfits.to_json(outfit_options)
+    if params[:user_id]
+      user = User.find(params[:user_id])
+
+      outfits = user.outfits
+    else
+      outfits = Outfit.all
+    end
+
+
+    render json: OutfitSerializer.new(outfits).to_serialized_json
+
+  end
+
+  def show
+    outfit = Outfit.find(params[:id])
+    render json: OutfitSerializer.new(outfit).to_serialized_json
   end
 
   def create
     user = User.find(params[:user_id])
-    outfits = user.outfits
 
-    outfit = Outfit.create(item_ids: params[:items])
 
-    # outfit.item_ids = params[:items]
+    items = params[:items]
 
-    outfit_options = {
-      include: {
-        items: {
-          only: [:id, :image, :brand],
-          include: {category: {only: [:name]}}
-        }
-      },
-      except: [:updated_at, :created_at]
-    }
+    new_outfit = Outfit.create
 
-    render json: outfit.to_json(outfit_options)
-    # render json: outfits.to_json
+    items.each {|item| OutfitItem.find_or_create_by(outfit: new_outfit, item_id: item)}
+
+
+    outfit_list = user.outfits
+    render json: OutfitSerializer.new(outfit_list).to_serialized_json
   end
 
-  def update
-
-  end
+  # def update
+  #
+  # end
 
   def destroy
-    # byebug
+
     outfit = Outfit.find(params[:id])
-    user = User.find(params[:user_id])
+
+
+    user = outfit.user
     outfit.destroy
     outfits = user.outfits
 
-    outfit_options = {
-      include: {
-        items: {
-          only: [:id, :image, :brand],
-          include: {category: {only: [:name]}}
-        }
-      },
-      except: [:updated_at, :created_at]
-    }
 
-    render json: outfits.to_json(outfit_options)
+
+    render json: OutfitSerializer.new(outfits).to_serialized_json
   end
 
   private
