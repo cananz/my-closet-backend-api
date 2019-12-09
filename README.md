@@ -13,7 +13,16 @@ Marisa Canan-Zucker
  * '/categories'
  * '/categories/:category_id'
 
+### Install:
+install gem dependencies:
+`bundle install`
+open postgresql app and ensure server is running
+migrate and seed database
+`rails db:migrate && rails db:seed`
+start server
+`rails s`
 
+##### view API at http://localhost:3000/users
 
 #### Project Info:
 * Ruby version: '2.6.1'
