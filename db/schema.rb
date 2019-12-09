@@ -25,21 +25,17 @@ ActiveRecord::Schema.define(version: 2019_10_18_133048) do
     t.string "color"
     t.string "image"
     t.string "brand"
-    t.bigint "user_id", null: false
-    t.bigint "category_id", null: false
+    t.integer "user_id"
+    t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_items_on_category_id"
-    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "outfit_items", force: :cascade do |t|
-    t.bigint "outfit_id", null: false
-    t.bigint "item_id", null: false
+    t.integer "outfit_id"
+    t.integer "item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id"], name: "index_outfit_items_on_item_id"
-    t.index ["outfit_id"], name: "index_outfit_items_on_outfit_id"
   end
 
   create_table "outfits", force: :cascade do |t|
@@ -55,8 +51,4 @@ ActiveRecord::Schema.define(version: 2019_10_18_133048) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "items", "categories"
-  add_foreign_key "items", "users"
-  add_foreign_key "outfit_items", "items"
-  add_foreign_key "outfit_items", "outfits"
 end
