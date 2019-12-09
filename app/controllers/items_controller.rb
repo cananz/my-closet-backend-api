@@ -9,13 +9,13 @@ class ItemsController < ApplicationController
     render json: ItemSerializer.new(item).to_serialized_json
   end
 
-  def create
-    
-  end
-
-  def update
-  end
-
-  def destroy
-  end
+  # def create
+  #
+  # end
+  #
+  # def update
+  # end
+  #
+  # def destroy
+  # end
 end
